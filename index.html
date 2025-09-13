@@ -16,6 +16,7 @@
       width: 100%;
       font-family: Arial, sans-serif;
       background: #f5f5f5;
+      overflow: hidden; /* prevent double scroll */
     }
 
     .container {
@@ -35,6 +36,116 @@
       font-size: 1.2rem;
       font-weight: bold;
       color: #fff;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .block:active, .drink:active, .back:active {
+      transform: scale(0.98);
+    }
+
+    /* First page blocks (all dark brown) */
+    .espresso, .coffee {
+      background: #6f4e37;
+    }
+
+    /* Subpage wrapper allows scrolling */
+    .subpage {
+      height: 100%;
+      width: 100%;
+      overflow-y: auto;
+      padding: 0.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 1fr;
+      gap: 0.5rem;
+      height: 100%;
+    }
+
+    .drink {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: #8b5e3c;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .back {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100px; /* same size as a grid block approx */
+      margin-top: 0.5rem;
+      border-radius: 12px;
+      background: #444;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Home screen -->
+  <div id="home" class="container">
+    <div class="block espresso" onclick="showDrinks('espresso')">Espresso Drinks</div>
+    <div class="block coffee" onclick="showDrinks('coffee')">Coffee Drinks</div>
+  </div>
+
+  <!-- Espresso drinks screen -->
+  <div id="espresso" class="subpage hidden">
+    <div class="grid">
+      <div class="drink">Macchiato</div>
+      <div class="drink">Cappuccino</div>
+      <div class="drink">Doppio</div>
+      <div class="drink">Latte</div>
+      <div class="drink">Affogato</div>
+      <div class="drink">Placeholder 6</div>
+    </div>
+    <div class="back" onclick="goHome()">Back</div>
+  </div>
+
+  <!-- Coffee drinks screen -->
+  <div id="coffee" class="subpage hidden">
+    <div class="grid">
+      <div class="drink">Placeholder 1</div>
+      <div class="drink">Placeholder 2</div>
+      <div class="drink">Placeholder 3</div>
+      <div class="drink">Placeholder 4</div>
+      <div class="drink">Placeholder 5</div>
+      <div class="drink">Placeholder 6</div>
+    </div>
+    <div class="back" onclick="goHome()">Back</div>
+  </div>
+
+  <script>
+    function showDrinks(type) {
+      document.getElementById("home").classList.add("hidden");
+      document.getElementById(type).classList.remove("hidden");
+    }
+
+    function goHome() {
+      document.getElementById("espresso").classList.add("hidden");
+      document.getElementById("coffee").classList.add("hidden");
+      document.getElementById("home").classList.remove("hidden");
+    }
+  </script>
+</body>
+</html>      color: #fff;
       text-align: center;
       cursor: pointer;
       transition: transform 0.2s ease;
