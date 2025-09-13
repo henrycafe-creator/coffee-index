@@ -5,87 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Café Menu</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
+      font-family: Arial, sans-serif;
       background: #f5f5f5;
-      color: #333;
     }
-    header {
-      background: #6f4e37;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-    nav {
-      background: #8b5e3c;
-      padding: 0.5rem;
+
+    .container {
       display: flex;
-      justify-content: center;
+      height: 100%;
+      width: 100%;
       gap: 1rem;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .menu-section {
-      padding: 2rem;
-    }
-    h2 {
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 0.5rem;
-    }
-    .drink {
-      background: white;
-      border-radius: 8px;
       padding: 1rem;
-      margin: 1rem 0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .drink h3 {
-      margin: 0 0 0.5rem 0;
+
+    .block {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .espresso {
+      background: #6f4e37; /* deep coffee brown */
+    }
+
+    .coffee {
+      background: #8b5e3c; /* lighter brown */
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Our Café Menu</h1>
-    <p>Handcrafted Coffee & Espresso Drinks</p>
-  </header>
-
-  <nav>
-    <a href="#espresso">Espresso</a>
-    <a href="#cold-brew">Cold Brew</a>
-    <a href="#tea">Tea</a>
-  </nav>
-
-  <section id="espresso" class="menu-section">
-    <h2>Espresso Drinks</h2>
-    <div class="drink">
-      <h3>Latte</h3>
-      <p>Rich espresso with steamed milk and a light layer of foam.</p>
-    </div>
-    <div class="drink">
-      <h3>Cappuccino</h3>
-      <p>Bold espresso topped with equal parts steamed milk and foam.</p>
-    </div>
-  </section>
-
-  <section id="cold-brew" class="menu-section">
-    <h2>Cold Brew</h2>
-    <div class="drink">
-      <h3>Classic Cold Brew</h3>
-      <p>Slow-steeped coffee served over ice for a smooth finish.</p>
-    </div>
-  </section>
-
-  <section id="tea" class="menu-section">
-    <h2>Tea</h2>
-    <div class="drink">
-      <h3>Chai Latte</h3>
-      <p>Spiced black tea blended with steamed milk.</p>
-    </div>
-  </section>
+  <div class="container">
+    <div class="block espresso">Espresso Drinks</div>
+    <div class="block coffee">Coffee Drinks</div>
+  </div>
 </body>
 </html>
