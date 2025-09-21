@@ -16,7 +16,7 @@
       width: 100%;
       font-family: Arial, sans-serif;
       background: #f5f5f5;
-      overflow: hidden; /* prevent double scroll */
+      overflow: hidden;
     }
 
     .container {
@@ -45,7 +45,7 @@
       transform: scale(0.98);
     }
 
-    /* First page blocks (all dark brown) */
+    /* Home screen colors */
     .espresso, .coffee {
       background: #6f4e37;
     }
@@ -83,7 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100px; /* same size as a grid block approx */
+      height: 100px;
       margin-top: 0.5rem;
       border-radius: 12px;
       background: #444;
@@ -94,6 +94,31 @@
       cursor: pointer;
     }
 
+    /* Detail panels (scrollable text pages) */
+    .detail {
+      height: 100%;
+      width: 100%;
+      overflow-y: auto;
+      padding: 1rem;
+      background: #fff;
+    }
+
+    .detail h2 {
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+    }
+
+    .detail h3 {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .detail p {
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
     .hidden {
       display: none;
     }
@@ -106,139 +131,144 @@
     <div class="block coffee" onclick="showDrinks('coffee')">Coffee Drinks</div>
   </div>
 
-  <!-- Espresso drinks screen -->
-  <div id="espresso" class="subpage hidden">
-    <div class="grid">
-      <div class="drink">Macchiato</div>
-      <div class="drink">Cappuccino</div>
-      <div class="drink">Doppio</div>
-      <div class="drink">Latte</div>
-      <div class="drink">Affogato</div>
-      <div class="drink">Placeholder 6</div>
-    </div>
-    <div class="back" onclick="goHome()">Back</div>
+  <!-- Espresso category page -->
+  <div id="espresso" class="container hidden">
+    <div class="block" style="background:#6f4e37;" onclick="showDrinks('espresso-water')">Water Based</div>
+    <div class="block" style="background:#6f4e37;" onclick="showDrinks('espresso-milk')">Milk Based</div>
   </div>
 
-  <!-- Coffee drinks screen -->
+  <!-- Espresso Water-Based Drinks -->
+  <div id="espresso-water" class="subpage hidden">
+    <div class="grid">
+      <div class="drink" onclick="showDetail('espresso-detail')">Espresso</div>
+      <div class="drink" onclick="showDetail('ristretto-detail')">Ristretto</div>
+      <div class="drink" onclick="showDetail('lungo-detail')">Lungo</div>
+      <div class="drink" onclick="showDetail('americano-detail')">Americano / Long Black</div>
+    </div>
+    <div class="back" onclick="goBack('espresso')">Back</div>
+  </div>
+
+  <!-- Espresso Milk-Based Drinks -->
+  <div id="espresso-milk" class="subpage hidden">
+    <div class="grid">
+      <div class="drink" onclick="showDetail('macchiato-detail')">Macchiato</div>
+      <div class="drink" onclick="showDetail('milk-detail')">Milk Steaming & Foaming</div>
+    </div>
+    <div class="back" onclick="goBack('espresso')">Back</div>
+  </div>
+
+  <!-- Coffee drinks placeholder -->
   <div id="coffee" class="subpage hidden">
     <div class="grid">
       <div class="drink">Placeholder 1</div>
       <div class="drink">Placeholder 2</div>
-      <div class="drink">Placeholder 3</div>
-      <div class="drink">Placeholder 4</div>
-      <div class="drink">Placeholder 5</div>
-      <div class="drink">Placeholder 6</div>
     </div>
     <div class="back" onclick="goHome()">Back</div>
   </div>
 
-  <script>
-    function showDrinks(type) {
-      document.getElementById("home").classList.add("hidden");
-      document.getElementById(type).classList.remove("hidden");
-    }
+  <!-- Detail Panels -->
 
-    function goHome() {
-      document.getElementById("espresso").classList.add("hidden");
-      document.getElementById("coffee").classList.add("hidden");
-      document.getElementById("home").classList.remove("hidden");
-    }
-  </script>
-</body>
-</html>      color: #fff;
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .block:active, .drink:active, .back:active {
-      transform: scale(0.98);
-    }
-
-    /* First page blocks (all dark brown) */
-    .espresso, .coffee {
-      background: #6f4e37;
-    }
-
-    /* Drink grid view */
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-auto-rows: 1fr;
-      gap: 0.5rem;
-      height: 100%;
-      width: 100%;
-      padding: 0.5rem;
-    }
-
-    .drink {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 12px;
-      background: #8b5e3c;
-      font-size: 1rem;
-      font-weight: bold;
-      color: #fff;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .back {
-      background: #444;
-    }
-
-    .empty {
-      background: transparent;
-    }
-
-    .hidden {
-      display: none;
-    }
-  </style>
-</head>
-<body>
-  <!-- Home screen -->
-  <div id="home" class="container">
-    <div class="block espresso" onclick="showDrinks('espresso')">Espresso Drinks</div>
-    <div class="block coffee" onclick="showDrinks('coffee')">Coffee Drinks</div>
+  <div id="espresso-detail" class="detail hidden">
+    <h2>Espresso</h2>
+    <h3>Definition</h3>
+    <p>Espresso differs from standard coffee as it is brewed under high pressure, producing a more intense flavor and a layer of reddish-brown cream/foam, called “crema”. This is the fundamental component of all drinks listed here.</p>
+    <h3>Brief History and Etymology</h3>
+    <p>Italian in origin, espresso in the form we generally use, is credited to have been made by the italian businessman Luigi Bezzera in the early 20th century. “Espresso” can translate to “pressed out” or “to express”, while “crema” translates to “cream”.</p>
+    <p>Traditionally, before the espresso is served, a small drink of water is given to the customer to cleanse their pallet. The espresso is also typically served in a hot mug/cup.</p>
+    <p>From Wikipedia: The words express, expres and espresso each have several meanings in English, French and Italian. The first meaning is to do with the idea of "expressing" ("pressing out of") or squeezing the flavour from the coffee using the pressure of the steam. The second meaning is to do with speed, as in a train. Finally there is the notion of doing something "expressly" for a person ... The first Bezzera and Pavoni espresso machines in 1906 took 45 seconds to make a cup of coffee, one at a time, expressly for you.</p>
+    <h3>How to Prepare</h3>
+    <p>Using the puck, fill it with grounds a bit more than you’d think is enough. Tamp them down- this doesn’t need to be done with much pressure. The final result should be a smooth, flat surface. Then, simply insert the puck into the espresso machine, put the shot mugs underneath the spouts, and press the “two shot” button.</p>
+    <h3>Other Notes</h3>
+    <p>After running the machine once, you should keep running it, three times total. The second round produces a regular coffee, while the result of the third is sufficient for iced coffee. A double espresso (two shots) may also be referred to as a doppio espresso.</p>
+    <div class="back" onclick="goBack('espresso-water')">Back</div>
   </div>
 
-  <!-- Espresso drinks screen -->
-  <div id="espresso" class="grid hidden">
-    <div class="drink">Macchiato</div>
-    <div class="drink">Cappuccino</div>
-    <div class="drink">Doppio</div>
-    <div class="drink">Latte</div>
-    <div class="drink">Affogato</div>
-    <div class="drink">Placeholder 6</div>
-    <div class="drink back" onclick="goHome()">Back</div>
-    <div class="empty"></div>
+  <div id="ristretto-detail" class="detail hidden">
+    <h2>Ristretto</h2>
+    <h3>Definition</h3>
+    <p>Ristretto is a stronger, smaller amount of espresso, resulting from the same amount of coffee grounds processed through a smaller amount of water. It may also be referred to as a “short” shot, as it should traditionally take less time to be produced from the machine. It could also be thought of as half of a single shot of espresso, though this doesn’t encompass the fact that a ristretto is stronger than a simple half shot of espresso.</p>
+    <h3>Etymology</h3>
+    <p>Ristretto is Italian, translating to “restricted”, referring to the restricted amount of water used when brewing.</p>
+    <h3>How to Prepare</h3>
+    <p>On our machine, the amount of water used isn’t under our control (to my knowledge), however the amount of coffee grounds is. To achieve a ristretto, we will do the inverse of the standard—putting in more coffee grounds in the puck than we would typically. Then follow the usual procedure (tamp, insert into machine, place shot mugs beneath spout, and brew). The final result should be a smaller, more concentrated amount of espresso.</p>
+    <div class="back" onclick="goBack('espresso-water')">Back</div>
   </div>
 
-  <!-- Coffee drinks screen -->
-  <div id="coffee" class="grid hidden">
-    <div class="drink">Placeholder 1</div>
-    <div class="drink">Placeholder 2</div>
-    <div class="drink">Placeholder 3</div>
-    <div class="drink">Placeholder 4</div>
-    <div class="drink">Placeholder 5</div>
-    <div class="drink">Placeholder 6</div>
-    <div class="drink back" onclick="goHome()">Back</div>
-    <div class="empty"></div>
+  <div id="lungo-detail" class="detail hidden">
+    <h2>Lungo</h2>
+    <h3>Definition</h3>
+    <p>Lungo is the inverse of a ristretto. Instead of a smaller, concentrated form of espresso, it is a larger, more diluted form of espresso resulting traditionally from the same amount of coffee grounds brewed through a larger amount of water. It may also be referred to as a “long” shot, as it should traditionally take more time to be produced from the machine. It could also be thought of as a double shot of espresso, though this doesn’t encompass the fact that a lungo is weaker than a simple double shot of espresso.</p>
+    <h3>Etymology</h3>
+    <p>Lungo is Italian, literally translating to “long”, referring to the longer brewing time.</p>
+    <h3>How to Prepare</h3>
+    <p>Like the ristretto, since we don’t have influence over the amount of water that runs through the grounds, we will influence the amount of grounds. To achieve a lungo, use less grounds than you would normally, and then follow the usual procedure. The result should be a larger amount of more diluted espresso.</p>
+    <div class="back" onclick="goBack('espresso-water')">Back</div>
+  </div>
+
+  <div id="americano-detail" class="detail hidden">
+    <h2>Americano and Long Black</h2>
+    <h3>Definition</h3>
+    <p>Both Americano and Long Black can be broadly defined as espresso and water (hot or cold as per customer’s request). The difference between the two lies in the amount of espresso and sequence of adding the two.</p>
+    <p>An Americano is made with a single shot of espresso added before the water, while a Long Black is a double shot of espresso added after the water.</p>
+    <h3>Brief History and Etymology</h3>
+    <p>From Wikipedia: There is a popular belief that the name (Americano, literally ‘American’) has its origins in World War II when American G.I.s in Italy diluted espresso with hot water to approximate the coffee to which they were accustomed. However, the Oxford English Dictionary cites the term as a borrowing from Central American Spanish café americano, a derisive term for mild coffee, dating back to the middle of the 1950s. The Long Black is a popular twist originating from Australia and New Zealand.</p>
+    <h3>How to Prepare</h3>
+    <p>Prepare a standard amount of espresso. For an Americano, fill the associated cup with a single shot of espresso and then add the water. For a Long Black, fill the cup with water and then add both shots of espresso.</p>
+    <div class="back" onclick="goBack('espresso-water')">Back</div>
+  </div>
+
+  <div id="macchiato-detail" class="detail hidden">
+    <h2>Macchiato</h2>
+    <h3>Definition</h3>
+    <p>A shot of espresso with a small amount of milk foam. This drink is meant to preserve the flavor of the espresso, while offering a little sweetness from the milk.</p>
+    <h3>Etymology</h3>
+    <p>Macchiato is Italian, translating to “stained” or “spotted”, referring to the coffee being stained or marked by the small amount of milk.</p>
+    <h3>How to Prepare</h3>
+    <p>Prepare a standard shot of espresso. Steam your milk, with extra time at the air-incorporation stage in order to prepare foam for the drink. Add the shot to the mug, and using a spoon, take a small amount of milk foam from the top of the jug, and place it in the center of the espresso.</p>
+    <div class="back" onclick="goBack('espresso-milk')">Back</div>
+  </div>
+
+  <div id="milk-detail" class="detail hidden">
+    <h2>Milk Steaming and Foaming</h2>
+    <h3>Brief Background</h3>
+    <p>Milk steaming is the process of incorporating hot steam into milk, which gives the milk texture. The result can differ on the type of milk you use, namely the fat content in the milk. Whole milk is the standard and considered the easiest to work with. Half &amp; half or heavy whipping cream has a higher fat content, and takes more time to properly steam, while 2% or fat free milk will take less time. Dairy free milks like oat milk or almond milk are also on the tinner side of fat content, and will take less time to steam. Additionally, milks with higher fat content are often creamier and bring more texture and flavor to the espresso than those with lower fat content.</p>
+    <h3>Personal Note</h3>
+    <p>I have found that combining different milks has yielded great results in the past. The best mixture was primarily half &amp; half, with some whole milk and oat milk. The result steamed quickly but had a rich texture.</p>
+    <h3>The Process</h3>
+    <p><strong>Steamed Milk vs. Milk Foam:</strong> In the process of steaming milk, you will make milk foam. The amount of foam depends on how long you incorporate the air (i.e. the longer you add air, the more milk foam, and vice versa). The pitcher will be split into two layers- the steamed milk and the foam atop it. As you pour the steamed milk, the foamed milk will rest on the top until you begin to run out of steamed milk.</p>
+    <p>Steamed milk and milk foam have different applications. Steamed milk is used for the designs of latte art, while milk foam is used in drinks such as macchiatos and cappuccinos. This doesn’t mean you can’t include milk foam in other drinks, but there is an important distinction between the two.</p>
+    <h3>Designs</h3>
+    <p>Once you have properly steamed milk, you can start practicing designs. There are a wide range out there to try, however the four most common include:</p>
+    <ul>
+      <li>Heart</li>
+      <li>Rosetta</li>
+      <li>Tulip</li>
+      <li>Swan</li>
+    </ul>
+    <p>For details on creating designs, find a video for your design in a dedicated playlist.</p>
+    <div class="back" onclick="goBack('espresso-milk')">Back</div>
   </div>
 
   <script>
     function showDrinks(type) {
-      document.getElementById("home").classList.add("hidden");
-      document.getElementById(type).classList.remove("hidden");
+      document.querySelectorAll('.container, .subpage, .detail').forEach(el => el.classList.add('hidden'));
+      document.getElementById(type).classList.remove('hidden');
     }
 
     function goHome() {
-      document.getElementById("espresso").classList.add("hidden");
-      document.getElementById("coffee").classList.add("hidden");
+      document.querySelectorAll('.subpage, .detail').forEach(el => el.classList.add('hidden'));
       document.getElementById("home").classList.remove("hidden");
+    }
+
+    function goBack(parent) {
+      document.querySelectorAll('.subpage, .detail').forEach(el => el.classList.add('hidden'));
+      document.getElementById(parent).classList.remove('hidden');
+    }
+
+    function showDetail(id) {
+      document.querySelectorAll('.subpage, .container, .detail').forEach(el => el.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
     }
   </script>
 </body>
-</html>
+      </html>
